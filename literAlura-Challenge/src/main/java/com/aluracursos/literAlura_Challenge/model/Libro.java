@@ -1,16 +1,24 @@
 package com.aluracursos.literAlura_Challenge.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.util.Optional;
 import java.util.OptionalInt;
-
+@Entity
+@Table(name = "Libros")
 public class Libro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
     private String titulo;
     private String nombreAutor;
     private String lenguaje;
     private int numeroDescargas;
+
+    public Libro() {
+    }
 
     public Libro(DatosLibro datosLibro) {
         this.titulo = datosLibro.titulo();
@@ -57,6 +65,7 @@ public class Libro {
                 +"\nTITULO: " + titulo
                 +"\nAUTOR: " + nombreAutor
                 +"\nLENGUAJE: " + lenguaje
-                +"\nDESCARGAS: " + numeroDescargas;
+                +"\nDESCARGAS: " + numeroDescargas
+                +"\n=====================================";
     }
 }

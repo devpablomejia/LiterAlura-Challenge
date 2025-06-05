@@ -9,13 +9,25 @@ import java.util.List;
 public record DatosLibro(
         @JsonAlias("title") String titulo,
         @JsonAlias("authors") List<DatosAutor> autores,
-        @JsonAlias("languages")List<String> lenguajes,
+        @JsonAlias("languages") List<String> lenguajes,
         @JsonAlias("download_count") int numeroDescargas) {
 
     public String nombreAutor() {
         return autores != null && !autores.isEmpty()
                 ? autores.get(0).nombre()
                 : "Desconocido";
+    }
+
+    public int muerteAutor() {
+        return autores != null && !autores.isEmpty()
+                ? autores.get(0).añoMuerte()
+                : 0;
+    }
+
+    public int naciemientoAutor() {
+        return autores != null && !autores.isEmpty()
+                ? autores.get(0).añoNacimiento()
+                : 0;
     }
 
     public String lenguaje() {
